@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="내 메모장">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<title>내 메모장</title>
+<style>
+  :root {
+    --purple: #6C63FF;
+    --purple-light: #EEF0FF;
+    --purple-dark: #4B44CC;
+    --bg: #F5F5F7;
+    --card: #FFFFFF;
+    --text: #1C1C1E;
+    --text2: #6E6E73;
+    --text3: #AEAEB2;
+    --border: rgba(0,0,0,0.08);
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #000000;
+      --card: #1C1C1E;
+      --text: #F5F5F7;
+      --text2: #AEAEB2;
+      --text3: #636366;
+      --border: rgba(255,255,255,0.1);
+      --purple-light: #1E1B3A;
+    }
+  }
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* ── NAV BAR ── */
+  .navbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,245,247,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    padding: calc(var(--safe-top) + 12px) 16px 12px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  @media (prefers-color-scheme: dark) {
+    .navbar { background: rgba(0,0,0,0.85); }
+  }
+  .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+  .navbar h1 { font-size: 22px; font-weight: 700; }
+  .navbar-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: var(--purple-light); color: var(--purple);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; transition: transform 0.15s;
+  }
+  .icon-btn:active { transform: scale(0.92); }
+
+  /* ── SEARCH ── */
+  .search-wrap { padding: 10px 16px; }
+  .search-box {
+    width: 100%; padding: 10px 14px 10px 38px; border-radius: 12px;
+    border: none; background: var(--card); color: var(--text);
+    font-size: 15px; outline: none;
+    box-shadow: 0 1px 4px var(--border);
+    position: relative;
+  }
+  .search-container { position: relative; }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 15px; pointer-events: none; }
+
+  /* ── FOLDERS ── */
+  .folders-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 12px; scrollbar-width: none; }
+  .folders-scroll::-webkit-scrollbar { display: none; }
+  .folder-chip {
+    flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: none;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+    background: var(--card); color: var(--text2);
+    box-shadow: 0 1px 3px var(--border);
+  }
+  .folder-chip.active { background: var(--purple); color: #fff; }
+  .folder-chip:active { transform: scale(0.95); }
+
+  /* ── MEMO LIST ── */
+  .memo-list { padding: 0 16px 100px; display: flex; flex-direction: column; gap: 10px; }
+  .memo-card {
+    background: var(--card); border-radius: 16px; padding: 14px 16px;
+    box-shadow: 0 1px 4px var(--border); cursor: pointer;
+    transition: transform 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .memo-card:active { transform: scale(0.98); }
+  .memo-card-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; }
+  .memo-card-inner { padding-left: 8px; }
+  .memo-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; }
+  .memo-title { font-size: 15px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .memo-date { font-size: 12px; color: var(--text3); margin-left: 8px; flex-shrink: 0; }
+  .memo-preview { font-size: 13px; color: var(--text2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 6px; }
+  .memo-footer { display: flex; align-items: center; gap: 6px; }
+  .memo-folder-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .pin-icon { font-size: 12px; }
+
+  /* ── FAB ── */
+  .fab {
+    position: fixed; bottom: calc(var(--safe-bottom) + 24px); right: 20px;
+    width: 56px; height: 56px; border-radius: 50%; border: none;
+    background: var(--purple); color: #fff; font-size: 28px;
+    box-shadow: 0 4px 16px rgba(108,99,255,0.45);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    z-index: 99; transition: transform 0.15s;
+  }
+  .fab:active { transform: scale(0.92); }
+
+  /* ── MODAL OVERLAY ── */
+  .overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.45);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  .sheet {
+    background: var(--card); border-radius: 24px 24px 0 0;
+    padding: 0 0 calc(var(--safe-bottom) + 16px);
+    transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+    max-height: 92vh; display: flex; flex-direction: column;
+  }
+  .overlay.open .sheet { transform: translateY(0); }
+  .sheet-handle { width: 36px; height: 4px; border-radius: 2px; background: var(--border); margin: 12px auto 0; flex-shrink: 0; }
+  .sheet-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; flex-shrink: 0; }
+  .sheet-title { font-size: 17px; font-weight: 600; }
+  .sheet-body { overflow-y: auto; flex: 1; padding: 0 16px; }
+  .sheet-btn {
+    padding: 10px 16px; border: none; border-radius: 12px;
+    font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-purple { background: var(--purple); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--purple); }
+  .btn-danger { background: transparent; color: #FF3B30; }
+  .sheet-btn:active { transform: scale(0.97); }
+
+  /* ── FORM ELEMENTS ── */
+  .field-title {
+    width: 100%; font-size: 20px; font-weight: 700; border: none; outline: none;
+    background: transparent; color: var(--text); padding: 8px 0; margin-bottom: 4px;
+  }
+  .field-title::placeholder { color: var(--text3); }
+  .field-content {
+    width: 100%; min-height: 180px; font-size: 15px; line-height: 1.7;
+    border: none; outline: none; background: transparent; color: var(--text);
+    resize: none; padding: 0 0 12px;
+  }
+  .field-content::placeholder { color: var(--text3); }
+  .divider { height: 0.5px; background: var(--border); margin: 8px 0; }
+  .label { font-size: 12px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin: 12px 0 8px; }
+
+  /* ── FOLDER CHIPS IN EDITOR ── */
+  .folder-picker { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .folder-picker::-webkit-scrollbar { display: none; }
+  .fpick-chip {
+    flex-shrink: 0; padding: 5px 12px; border-radius: 14px; border: 1.5px solid var(--border);
+    font-size: 13px; cursor: pointer; transition: all 0.15s;
+    background: transparent; color: var(--text2);
+  }
+  .fpick-chip.selected { border-color: var(--purple); color: var(--purple); background: var(--purple-light); }
+
+  /* ── LINK CARD ── */
+  .link-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px;
+  }
+  .link-icon { font-size: 18px; }
+  .link-info { flex: 1; overflow: hidden; }
+  .link-name { font-size: 13px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .link-url { font-size: 11px; color: var(--text3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .link-del { background: none; border: none; color: var(--text3); font-size: 18px; cursor: pointer; padding: 0 4px; }
+
+  /* ── ADD LINK MINI FORM ── */
+  .link-form { background: var(--bg); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+  .link-input {
+    width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--card); color: var(--text); font-size: 14px; outline: none; margin-bottom: 6px;
+  }
+  .link-input:focus { border-color: var(--purple); }
+  .link-add-btn {
+    width: 100%; padding: 8px; border-radius: 8px; background: var(--purple);
+    color: #fff; border: none; font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+
+  /* ── DETAIL VIEW ── */
+  .detail-header { padding: 0 16px 12px; }
+  .detail-title { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+  .detail-meta { font-size: 12px; color: var(--text3); display: flex; gap: 10px; flex-wrap: wrap; }
+  .detail-content { font-size: 16px; line-height: 1.75; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+  .detail-links { margin-top: 16px; }
+  .detail-link-card {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px;
+    text-decoration: none; color: var(--text);
+  }
+  .detail-link-card:active { opacity: 0.7; }
+
+  /* ── FOLDER MANAGER ── */
+  .folder-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+  .folder-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .folder-row-name { flex: 1; font-size: 15px; }
+  .folder-del-btn { background: none; border: none; color: #FF3B30; font-size: 18px; cursor: pointer; }
+  .new-folder-row { display: flex; gap: 8px; margin-top: 12px; }
+  .folder-name-input {
+    flex: 1; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); font-size: 14px; outline: none;
+  }
+  .folder-name-input:focus { border-color: var(--purple); }
+  .color-picker-row { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 3px solid transparent;
+    transition: transform 0.15s;
+  }
+  .color-dot.selected { border-color: var(--text); transform: scale(1.1); }
+
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--text3); }
+  .empty-state .emoji { font-size: 48px; margin-bottom: 12px; }
+  .empty-state p { font-size: 15px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <h1>📝 내 메모장</h1>
+    <div class="navbar-actions">
+      <button class="icon-btn" id="btnFolderMgr" title="폴더 관리">🗂</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input class="search-box" id="searchInput" placeholder="메모 검색..." type="search">
+  </div>
+</div>
+
+<!-- FOLDERS -->
+<div class="folders-scroll" id="folderChips"></div>
+
+<!-- LIST -->
+<div class="memo-list" id="memoList"></div>
+
+<!-- FAB -->
+<button class="fab" id="fabBtn">＋</button>
+
+<!-- ── EDITOR SHEET ── -->
+<div class="overlay" id="editorOverlay">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-btn btn-ghost" id="editorCancel">취소</button>
+      <span class="sheet-title" id="editorSheetTitle">새 메모</span>
+      <button class="sheet-btn btn-purple" id="editorSave">저장</button>
+    </div>
+    <div class="sheet-body">
+      <input class="field-title" id="editorTitle" placeholder="제목" maxlength="100">
+      <div class="divider"></div>
+      <textarea class="field-content" id="editorContent" placeholder="내용을 입력하세요..."></textarea>
+      <div class="divider"></div>
+      <div class="label">폴더</div>
+      <div class="folder-picker" id="editorFolderPicker"></div>
+      <div class="label">링크</div>
+      <div id="editorLinks"></div>
+      <div class="link-form">
+        <input class="link-input" id="linkUrl" placeholder="https://..." type="url">
+        <input class="link-input" id="linkName" placeholder="링크 이름 (선택)" type="text">
+        <button class="link-add-btn" id="addLinkBtn">링크 추가</button>
+      </div>
+      <div style="height: 12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DETAIL SHEET ── -->
+<div class="overlay" id="detailOverlay">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-btn btn-ghost" id="detailClose">닫기</button>
+      <span class="sheet-title"></span>
+      <div style="display:flex;gap:6px;">
+        <button class="sheet-btn btn-ghost" id="detailPin">📌</button>
+        <button class="sheet-btn btn-ghost" id="detailEdit">편집</button>
+        <button class="sheet-btn btn-danger" id="detailDelete">삭제</button>
+      </div>
+    </div>
+    <div class="sheet-body" id="detailBody"></div>
+  </div>
+</div>
+
+<!-- ── FOLDER MANAGER SHEET ── -->
+<div class="overlay" id="folderOverlay">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-btn btn-ghost" id="folderClose">닫기</button>
+      <span class="sheet-title">폴더 관리</span>
+      <span></span>
+    </div>
+    <div class="sheet-body">
+      <div id="folderList"></div>
+      <div class="label">새 폴더 만들기</div>
+      <div class="color-picker-row" id="colorPicker"></div>
+      <div class="new-folder-row">
+        <input class="folder-name-input" id="newFolderName" placeholder="폴더 이름...">
+        <button class="sheet-btn btn-purple" id="addFolderBtn">추가</button>
+      </div>
+      <div style="height:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FOLDER_COLORS = ['#6C63FF','#FF6B6B','#4ECDC4','#FFE66D','#A8E063','#FF9F43','#EE5A24','#0652DD','#E84393'];
+let selectedNewFolderColor = FOLDER_COLORS[0];
+
+function load(key, def) {
+  try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; }
+}
+function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
+let folders = load('folders', [
+  { id: 'f1', name: '개인', color: '#FF6B6B' },
+  { id: 'f2', name: '업무', color: '#4ECDC4' },
+  { id: 'f3', name: '아이디어', color: '#FFE66D' },
+]);
+let memos = load('memos', []);
+let activeFolderId = null;
+let editingMemoId = null;
+let editingLinks = [];
+
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+function fmtDate(ts) {
+  const d = new Date(ts), now = new Date();
+  const diffMs = now - d;
+  if (diffMs < 60000) return '방금';
+  if (diffMs < 3600000) return Math.floor(diffMs/60000) + '분 전';
+  if (d.toDateString() === now.toDateString()) {
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+  const yesterday = new Date(now); yesterday.setDate(now.getDate()-1);
+  if (d.toDateString() === yesterday.toDateString()) return '어제';
+  return (d.getMonth()+1) + '/' + d.getDate();
+}
+
+function fullDate(ts) {
+  const d = new Date(ts);
+  return d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 ' +
+    d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+}
+
+function getFolder(id) { return folders.find(f => f.id === id); }
+
+function renderFolderChips() {
+  const el = document.getElementById('folderChips');
+  el.innerHTML = `<button class="folder-chip ${activeFolderId===null?'active':''}" data-id="">전체</button>` +
+    folders.map(f => `<button class="folder-chip ${activeFolderId===f.id?'active':''}" data-id="${f.id}" style="${activeFolderId===f.id?'background:'+f.color+';border-color:'+f.color:''}">${f.name}</button>`).join('');
+  el.querySelectorAll('.folder-chip').forEach(btn => btn.addEventListener('click', () => {
+    activeFolderId = btn.dataset.id || null;
+    renderFolderChips(); renderMemos();
+  }));
+}
+
+function renderMemos() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  let list = memos.filter(m => activeFolderId ? m.folderId === activeFolderId : true);
+  if (query) list = list.filter(m => m.title.toLowerCase().includes(query) || m.content.toLowerCase().includes(query));
+  list = list.sort((a,b) => (b.pinned||0)-(a.pinned||0) || b.updatedAt-a.updatedAt);
+  const el = document.getElementById('memoList');
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>${query ? '검색 결과가 없어요' : '메모가 없어요. + 버튼을 눌러 작성해보세요!'}</p></div>`;
+    return;
+  }
+  el.innerHTML = list.map(m => {
+    const f = getFolder(m.folderId);
+    const accent = f ? f.color : 'var(--purple)';
+    return `<div class="memo-card" data-id="${m.id}">
+      <div class="memo-card-accent" style="background:${accent}"></div>
+      <div class="memo-card-inner">
+        <div class="memo-card-header">
+          <span class="memo-title">${m.pinned?'📌 ':''}${m.title||'제목 없음'}</span>
+          <span class="memo-date">${fmtDate(m.updatedAt)}</span>
+        </div>
+        <div class="memo-preview">${m.content||'내용 없음'}</div>
+        <div class="memo-footer">
+          ${f ? `<span class="memo-folder-tag" style="background:${f.color}22;color:${f.color}">${f.name}</span>` : ''}
+          ${m.links&&m.links.length ? `<span style="font-size:11px;color:var(--text3)">🔗 ${m.links.length}</span>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  el.querySelectorAll('.memo-card').forEach(card => card.addEventListener('click', () => openDetail(card.dataset.id)));
+}
+
+/* ── EDITOR ── */
+function openEditor(memoId) {
+  editingMemoId = memoId || null;
+  const m = memoId ? memos.find(x => x.id === memoId) : null;
+  document.getElementById('editorTitle').value = m ? m.title : '';
+  document.getElementById('editorContent').value = m ? m.content : '';
+  document.getElementById('editorSheetTitle').textContent = m ? '메모 편집' : '새 메모';
+  editingLinks = m ? JSON.parse(JSON.stringify(m.links||[])) : [];
+  document.getElementById('linkUrl').value = '';
+  document.getElementById('linkName').value = '';
+  renderEditorFolders(m ? m.folderId : activeFolderId);
+  renderEditorLinks();
+  document.getElementById('editorOverlay').classList.add('open');
+  setTimeout(() => document.getElementById('editorTitle').focus(), 350);
+}
+
+function renderEditorFolders(selectedId) {
+  const el = document.getElementById('editorFolderPicker');
+  el.innerHTML = `<button class="fpick-chip ${!selectedId?'selected':''}" data-id="">없음</button>` +
+    folders.map(f => `<button class="fpick-chip ${selectedId===f.id?'selected':''}" data-id="${f.id}" style="${selectedId===f.id?'border-color:'+f.color+';color:'+f.color+';background:'+f.color+'22':''}">${f.name}</button>`).join('');
+  el.querySelectorAll('.fpick-chip').forEach(btn => btn.addEventListener('click', () => renderEditorFolders(btn.dataset.id||null)));
+}
+
+function getSelectedFolderId() {
+  const sel = document.querySelector('#editorFolderPicker .fpick-chip.selected');
+  return sel ? sel.dataset.id || null : null;
+}
+
+function renderEditorLinks() {
+  document.getElementById('editorLinks').innerHTML = editingLinks.map((l,i) =>
+    `<div class="link-item"><span class="link-icon">🔗</span><div class="link-info"><div class="link-name">${l.name||l.url}</div><div class="link-url">${l.url}</div></div><button class="link-del" data-i="${i}">✕</button></div>`
+  ).join('');
+  document.querySelectorAll('.link-del').forEach(btn => btn.addEventListener('click', () => {
+    editingLinks.splice(+btn.dataset.i, 1); renderEditorLinks();
+  }));
+}
+
+document.getElementById('addLinkBtn').addEventListener('click', () => {
+  let url = document.getElementById('linkUrl').value.trim();
+  if (!url) return;
+  if (!url.startsWith('http')) url = 'https://' + url;
+  editingLinks.push({ id: genId(), url, name: document.getElementById('linkName').value.trim() });
+  document.getElementById('linkUrl').value = ''; document.getElementById('linkName').value = '';
+  renderEditorLinks();
+});
+
+document.getElementById('editorSave').addEventListener('click', () => {
+  const title = document.getElementById('editorTitle').value.trim();
+  const content = document.getElementById('editorContent').value.trim();
+  if (!title && !content) return;
+  const now = Date.now();
+  if (editingMemoId) {
+    const idx = memos.findIndex(m => m.id === editingMemoId);
+    memos[idx] = { ...memos[idx], title, content, folderId: getSelectedFolderId(), links: editingLinks, updatedAt: now };
+  } else {
+    memos.unshift({ id: genId(), title, content, folderId: getSelectedFolderId(), links: editingLinks, createdAt: now, updatedAt: now, pinned: false });
+  }
+  save('memos', memos);
+  document.getElementById('editorOverlay').classList.remove('open');
+  renderMemos();
+});
+
+document.getElementById('editorCancel').addEventListener('click', () => document.getElementById('editorOverlay').classList.remove('open'));
+document.getElementById('editorOverlay').addEventListener('click', e => { if (e.target===e.currentTarget) e.currentTarget.classList.remove('open'); });
+
+/* ── DETAIL ── */
+function openDetail(id) {
+  const m = memos.find(x => x.id === id);
+  if (!m) return;
+  const f = getFolder(m.folderId);
+  const body = document.getElementById('detailBody');
+  body.innerHTML = `<div class="detail-header">
+    <div class="detail-title">${m.title||'제목 없음'}</div>
+    <div class="detail-meta">
+      <span>🕐 ${fullDate(m.updatedAt)}</span>
+      ${f ? `<span style="color:${f.color}">● ${f.name}</span>` : ''}
+      ${m.pinned ? '<span>📌 고정됨</span>' : ''}
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div style="padding: 12px 0;">
+    <div class="detail-content">${m.content||'내용이 없어요.'}</div>
+    ${m.links&&m.links.length ? `<div class="detail-links"><div class="label">링크</div>${m.links.map(l=>`<a class="detail-link-card" href="${l.url}" target="_blank" rel="noopener"><span style="font-size:20px">🔗</span><div><div class="link-name">${l.name||l.url}</div><div class="link-url">${l.url}</div></div></a>`).join('')}</div>` : ''}
+  </div>`;
+  document.getElementById('detailPin').textContent = m.pinned ? '📍' : '📌';
+  document.getElementById('detailPin').onclick = () => {
+    const idx = memos.findIndex(x => x.id === id);
+    memos[idx].pinned = !memos[idx].pinned;
+    save('memos', memos); openDetail(id); renderMemos();
+  };
+  document.getElementById('detailEdit').onclick = () => {
+    document.getElementById('detailOverlay').classList.remove('open');
+    setTimeout(() => openEditor(id), 100);
+  };
+  document.getElementById('detailDelete').onclick = () => {
+    if (confirm('이 메모를 삭제할까요?')) {
+      memos = memos.filter(x => x.id !== id);
+      save('memos', memos);
+      document.getElementById('detailOverlay').classList.remove('open');
+      renderMemos();
+    }
+  };
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+document.getElementById('detailClose').addEventListener('click', () => document.getElementById('detailOverlay').classList.remove('open'));
+document.getElementById('detailOverlay').addEventListener('click', e => { if (e.target===e.currentTarget) e.currentTarget.classList.remove('open'); });
+
+/* ── FOLDER MANAGER ── */
+function renderFolderManager() {
+  document.getElementById('folderList').innerHTML = folders.map(f =>
+    `<div class="folder-row"><div class="folder-dot" style="background:${f.color}"></div><span class="folder-row-name">${f.name}</span><button class="folder-del-btn" data-id="${f.id}">✕</button></div>`
+  ).join('') || '<p style="color:var(--text3);font-size:14px;padding:8px 0;">폴더가 없어요.</p>';
+  document.querySelectorAll('.folder-del-btn').forEach(btn => btn.addEventListener('click', () => {
+    if (confirm('폴더를 삭제할까요? (메모는 유지됩니다)')) {
+      folders = folders.filter(f => f.id !== btn.dataset.id);
+      memos.forEach(m => { if (m.folderId === btn.dataset.id) m.folderId = null; });
+      save('folders', folders); save('memos', memos);
+      renderFolderManager(); renderFolderChips(); renderMemos();
+    }
+  }));
+
+  const cp = document.getElementById('colorPicker');
+  cp.innerHTML = FOLDER_COLORS.map(c =>
+    `<div class="color-dot ${c===selectedNewFolderColor?'selected':''}" style="background:${c}" data-c="${c}"></div>`
+  ).join('');
+  cp.querySelectorAll('.color-dot').forEach(dot => dot.addEventListener('click', () => {
+    selectedNewFolderColor = dot.dataset.c; renderFolderManager();
+  }));
+}
+
+document.getElementById('addFolderBtn').addEventListener('click', () => {
+  const name = document.getElementById('newFolderName').value.trim();
+  if (!name) return;
+  folders.push({ id: genId(), name, color: selectedNewFolderColor });
+  save('folders', folders);
+  document.getElementById('newFolderName').value = '';
+  renderFolderManager(); renderFolderChips();
+});
+
+document.getElementById('btnFolderMgr').addEventListener('click', () => {
+  renderFolderManager();
+  document.getElementById('folderOverlay').classList.add('open');
+});
+document.getElementById('folderClose').addEventListener('click', () => document.getElementById('folderOverlay').classList.remove('open'));
+document.getElementById('folderOverlay').addEventListener('click', e => { if (e.target===e.currentTarget) e.currentTarget.classList.remove('open'); });
+
+/* ── INIT ── */
+document.getElementById('fabBtn').addEventListener('click', () => openEditor(null));
+document.getElementById('searchInput').addEventListener('input', renderMemos);
+
+renderFolderChips();
+renderMemos();
+</script>
+</body>
+</html>
